@@ -40,7 +40,7 @@ make_glue = |types_list| {
 	}
 
 	# Sort by index so array entries are in the correct order
-	sorted = List.sort_with($hosted_functions, compare_by_index)
+	sorted = List.sort($hosted_functions, compare_by_index)
 
 	rust_content = generate_rust_file(sorted, $type_table)
 
@@ -49,12 +49,12 @@ make_glue = |types_list| {
 
 compare_by_index = |a, b| {
 	if a.index < b.index {
-		return LT
+		return FirstBeforeSecond
 	}
 	if a.index > b.index {
-		return GT
+		return SecondBeforeFirst
 	}
-	EQ
+	Equivalent
 }
 
 # =============================================================================
